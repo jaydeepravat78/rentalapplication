@@ -10,6 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class CheckoutRequest {
     private String toolCode;
 

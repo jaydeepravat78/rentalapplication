@@ -1,13 +1,16 @@
 package org.example.rentalapplication.service.impl;
 
 import org.example.rentalapplication.dto.ToolDTO;
+import org.example.rentalapplication.dto.ToolTypeDTO;
 import org.example.rentalapplication.entity.Tool;
+import org.example.rentalapplication.entity.ToolType;
 import org.example.rentalapplication.repository.ToolRepository;
 import org.example.rentalapplication.service.ToolService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,12 +63,24 @@ public class ToolServiceImpl implements ToolService {
     private ToolDTO convertToDTO(Tool tool) {
         ToolDTO toolDTO = new ToolDTO();
         BeanUtils.copyProperties(tool, toolDTO);
+        if (tool.getToolType() != null) {
+            ToolTypeDTO toolTypeDTO = new ToolTypeDTO();
+            BeanUtils.copyProperties(tool.getToolType(), toolTypeDTO);
+            toolDTO.setToolType(toolTypeDTO);
+        }
         return toolDTO;
     }
 
     private Tool convertToEntity(ToolDTO toolDTO) {
         Tool tool = new Tool();
         BeanUtils.copyProperties(toolDTO, tool);
+        if (toolDTO.getToolType() != null) {
+            ToolType toolType = new ToolType();
+            BeanUtils.copyProperties(toolDTO.getToolType(), toolType);
+            toolType.setTools(new HashSet<Tool>());
+            tool.setToolType(toolType);
+        }
+
         return tool;
     }
 }

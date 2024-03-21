@@ -2,7 +2,9 @@ package org.example.rentalapplication.entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -10,6 +12,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ToolType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +29,6 @@ public class ToolType {
 
     private boolean holidayCharge;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "toolType", fetch = FetchType.EAGER)
     private Set<Tool> tools;
 }

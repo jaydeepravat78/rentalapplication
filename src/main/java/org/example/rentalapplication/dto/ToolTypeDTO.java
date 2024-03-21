@@ -12,5 +12,4 @@ public class ToolTypeDTO {
     private boolean weekDayCharge;
     private boolean weekendCharge;
     private boolean holidayCharge;
-    private Set<ToolDTO> tools;
 }

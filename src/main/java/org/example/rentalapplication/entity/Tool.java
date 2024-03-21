@@ -17,7 +17,7 @@ public class Tool {
 
     private String brand;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "type_id", referencedColumnName = "id")
     private ToolType toolType;
 }

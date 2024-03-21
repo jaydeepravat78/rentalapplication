@@ -12,8 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/tools")
 public class ToolController {
-    @Autowired
-    ToolServiceImpl toolService;
+    final ToolServiceImpl toolService;
+
+    public ToolController(ToolServiceImpl toolService) {
+        this.toolService = toolService;
+    }
 
     @PostMapping("/")
     public ResponseEntity<ToolDTO> addTool(@RequestBody ToolDTO toolDTO) {

@@ -15,8 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class ToolServiceImpl implements ToolService {
 
-    @Autowired
-    ToolRepository toolRepository;
+    final ToolRepository toolRepository;
+
+    public ToolServiceImpl(ToolRepository toolRepository) {
+        this.toolRepository = toolRepository;
+    }
 
     @Override
     public ToolDTO getByToolId(long id) {
